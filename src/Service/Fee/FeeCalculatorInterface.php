@@ -20,4 +20,6 @@ interface FeeCalculatorInterface
      * @return float The calculated fee.
      */
     public function calculate(LoanApplication $application): float;
+
+    public function setInterpolationStrategy(string $interpolationType);
 }
