@@ -8,9 +8,34 @@ use Lendable\Interview\Interpolation\Exception;
 
 class Term
 {
-    private $noOfMonths;
+    private $noOfMonths = 0;
 
     private $breakpoints = [];
+
+    public function __construct(int $noOfMonths)
+    {
+//        $this->validateNoOfMonths();
+
+        $this->setNoOfMonths($noOfMonths);
+
+        $this->generateBreakpointsFromData();
+    }
+
+    private function generateBreakpointsFromData()
+    {
+        $className     = __NAMESPACE__;
+        $className     = substr($className, 0, strrpos($className, "\\"));
+        $termClassName = $className . '\\TermData\\Term' . $this->getNoOfMonths();
+
+        $breakpointsData = (new $termClassName)->getData();
+
+        foreach ($breakpointsData as $breakpointData)
+        {
+            $breakpoint = new Breakpoint($breakpointData);
+
+            $this->addBreakpoint($breakpoint);
+        }
+    }
 
     /**
      * @return array
@@ -20,7 +45,7 @@ class Term
         return $this->breakpoints;
     }
 
-    public function addBreakpoint(Breakpoint $breakpoint)
+    private function addBreakpoint(Breakpoint $breakpoint)
     {
         $this->validateAddBreakpoint($breakpoint);
 
@@ -28,17 +53,17 @@ class Term
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getNoOfMonths()
+    public function getNoOfMonths(): int
     {
         return $this->noOfMonths;
     }
 
     /**
-     * @param mixed $noOfMonths
+     * @param int $noOfMonths
      */
-    public function setNoOfMonths($noOfMonths)
+    public function setNoOfMonths(int $noOfMonths)
     {
         $this->noOfMonths = $noOfMonths;
     }

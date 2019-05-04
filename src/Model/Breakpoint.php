@@ -6,38 +6,54 @@ namespace Lendable\Interview\Interpolation\Model;
 
 class Breakpoint
 {
-    private $amount = 0;
+    private $amount = 0.0;
 
-    private $fee = 0;
+    private $fee = 0.0;
+
+    public function __construct(array $breakpointData)
+    {
+        $this->validateCreate($breakpointData);
+
+        $this->setAmount($breakpointData['amount']);
+
+        $this->setFee($breakpointData['fee']);
+    }
+
+    private function validateCreate(array $breakpointData)
+    {
+        $requiredAttributes = ['amount', 'fee'];
+        
+//        if (array_intersect($breakpointData, $requiredAttributes))
+    }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getAmount(): int
+    public function getAmount(): float
     {
         return $this->amount;
     }
 
     /**
-     * @param int $amount
+     * @param float $amount
      */
-    public function setAmount(int $amount)
+    public function setAmount(float $amount)
     {
         $this->amount = $amount;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getFee(): int
+    public function getFee(): float
     {
         return $this->fee;
     }
 
     /**
-     * @param int $fee
+     * @param float $fee
      */
-    public function setFee(int $fee)
+    public function setFee(float $fee)
     {
         $this->fee = $fee;
     }
