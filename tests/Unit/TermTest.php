@@ -1,6 +1,9 @@
 <?php
 
-use \PHPUnit\Framework\TestCase;
+declare(strict_types=1);
+
+namespace Lendable\Interview\Interpolation\Tests\Unit;
+
 use Lendable\Interview\Interpolation\Exception;
 use Lendable\Interview\Interpolation\Model\Term;
 use Lendable\Interview\Interpolation\Model\Breakpoint;
@@ -9,7 +12,7 @@ use Lendable\Interview\Interpolation\TermData\Constants;
 /**
  * Class TermTest
  */
-class TermTest extends TestCase
+class TermTest extends Base
 {
     public function testAddingDuplicateBreakpoint()
     {

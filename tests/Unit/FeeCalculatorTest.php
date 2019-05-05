@@ -1,6 +1,9 @@
 <?php
 
-use \PHPUnit\Framework\TestCase;
+declare(strict_types=1);
+
+namespace Lendable\Interview\Interpolation\Tests\Unit;
+
 use Lendable\Interview\Interpolation\Exception;
 use Lendable\Interview\Interpolation\Model\LoanApplication;
 use Lendable\Interview\Interpolation\Service\Fee\FeeCalculator;
@@ -8,8 +11,11 @@ use Lendable\Interview\Interpolation\Service\Fee\FeeCalculator;
 /**
  * Class FeeCalculatorTest
  */
-class FeeCalculatorTest extends TestCase
+class FeeCalculatorTest extends Base
 {
+    /**
+     * Asserts linear interpolation
+     */
     public function testLinearInterpolation()
     {
         $calculator = new FeeCalculator();
@@ -21,6 +27,9 @@ class FeeCalculatorTest extends TestCase
         $this->assertEquals(115.0, $fee);
     }
 
+    /**
+     * Asserts linear interpolation upto 1 decimal point
+     */
     public function testLinearInterpolation1DecimalPoint()
     {
         $calculator = new FeeCalculator();
@@ -33,6 +42,9 @@ class FeeCalculatorTest extends TestCase
         $this->assertEquals(119.6, $fee);
     }
 
+    /**
+     * Asserts linear interpolation upto 2 decimal points
+     */
     public function testLinearInterpolation2DecimalPoints()
     {
         $calculator = new FeeCalculator();
@@ -45,6 +57,9 @@ class FeeCalculatorTest extends TestCase
         $this->assertEquals(119.44, $fee);
     }
 
+    /**
+     * Asserts that invalid term exception is thrown if the term is not defined
+     */
     public function testLinearInterpolationInvalidTerm()
     {
         $calculator = new FeeCalculator();
@@ -68,6 +83,9 @@ class FeeCalculatorTest extends TestCase
         }
     }
 
+    /**
+     * Asserts that invalid amount exception is thrown if the amount is out of min-max term range
+     */
     public function testLinearInterpolationLoanAmountOutOfRange()
     {
         $calculator = new FeeCalculator();
@@ -91,6 +109,9 @@ class FeeCalculatorTest extends TestCase
         }
     }
 
+    /**
+     * Asserts that invalid interpolation strategy exception is thrown if the
+     */
     public function testInvalidInterpolationStrategy()
     {
         try
