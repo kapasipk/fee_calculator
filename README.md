@@ -89,3 +89,21 @@ The fee structure doesn't follow particular algorithm and it is possible that sa
 £19000: £760
 £20000: £800
 ```
+
+# Testing
+Run the following command to run the test suite. Ensure that the dependencies have been installed.
+```
+./vendor/phpunit/phpunit/phpunit tests
+```
+
+# Development
+The code can easily be extended for the following requirements - 
+1. Adding new breakpoints to existing terms
+2. Adding new terms with breakpoints 
+3. Adding new attributes like 'tax' to the existing terms and breakpoints
+4. Adding new interpolation strategy to calculate the fee. 
+For eg: Add a new class `Gaussian` in `InterpolationStrategy` 
+namespace and use it like this - 
+  ```
+  new FeeCalculator('Gaussian');
+  ``` 
