@@ -6,6 +6,9 @@ use Lendable\Interview\Interpolation\Model\Term;
 use Lendable\Interview\Interpolation\Model\Breakpoint;
 use Lendable\Interview\Interpolation\TermData\Constants;
 
+/**
+ * Class TermTest
+ */
 class TermTest extends TestCase
 {
     public function testAddingDuplicateBreakpoint()

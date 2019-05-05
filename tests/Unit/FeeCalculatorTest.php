@@ -5,6 +5,9 @@ use Lendable\Interview\Interpolation\Exception;
 use Lendable\Interview\Interpolation\Model\LoanApplication;
 use Lendable\Interview\Interpolation\Service\Fee\FeeCalculator;
 
+/**
+ * Class FeeCalculatorTest
+ */
 class FeeCalculatorTest extends TestCase
 {
     public function testLinearInterpolation()

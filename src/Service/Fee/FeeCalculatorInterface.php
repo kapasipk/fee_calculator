@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lendable\Interview\Interpolation\Service\Fee;
 
+use Lendable\Interview\Interpolation\Exception;
 use Lendable\Interview\Interpolation\Model\LoanApplication;
 
 /**
@@ -14,12 +15,16 @@ interface FeeCalculatorInterface
     /**
      * Calculates the fee for a loan application.
      *
-     * @param LoanApplication $application The loan application to
-     * calculate for.
+     * @param LoanApplication $application The loan application to calculate for.
      *
      * @return float The calculated fee.
      */
     public function calculate(LoanApplication $application): float;
 
+    /**
+     * @param string $interpolationType
+     *
+     * @throws Exception\InvalidInterpolationStrategyException
+     */
     public function setInterpolationStrategy(string $interpolationType);
 }

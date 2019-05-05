@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace Lendable\Interview\Interpolation\Model;
 
 /**
+ * Class LoanApplication
+ *
  * A cut down version of a loan application containing
  * only the required properties for this test.
+ *
+ * @package Lendable\Interview\Interpolation\Model
  */
 class LoanApplication
 {

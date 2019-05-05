@@ -4,8 +4,17 @@ declare(strict_types=1);
 
 namespace Lendable\Interview\Interpolation\TermData;
 
+/**
+ * Class Term12
+ * Defines the breakpoints for 12 months term period
+ *
+ * @package Lendable\Interview\Interpolation\TermData
+ */
 class Term12 extends Base
 {
+    /**
+     * @var array
+     */
     protected $data = [
         [
             Constants::AMOUNT => 1000,

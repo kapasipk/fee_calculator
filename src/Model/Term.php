@@ -6,12 +6,30 @@ namespace Lendable\Interview\Interpolation\Model;
 
 use Lendable\Interview\Interpolation\Exception;
 
+/**
+ * Class Term
+ *
+ * @package Lendable\Interview\Interpolation\Model
+ */
 class Term
 {
+    /**
+     * @var int
+     */
     private $noOfMonths = 0;
 
+    /**
+     * @var array
+     */
     private $breakpoints = [];
 
+    /**
+     * Term constructor.
+     *
+     * @param int $noOfMonths
+     *
+     * @throws Exception\DuplicateBreakpointAmountException
+     */
     public function __construct(int $noOfMonths)
     {
         $this->setNoOfMonths($noOfMonths);
@@ -19,6 +37,11 @@ class Term
         $this->generateBreakpointsFromData();
     }
 
+    /**
+     * Loads the data, generates the breakpoint objects and adds them to the term.
+     *
+     * @throws Exception\DuplicateBreakpointAmountException
+     */
     private function generateBreakpointsFromData()
     {
         $className     = __NAMESPACE__;
@@ -48,6 +71,13 @@ class Term
         return $this->breakpoints;
     }
 
+    /**
+     * Validates and adds the breakpoint to the term
+     *
+     * @param Breakpoint $breakpoint
+     *
+     * @throws Exception\DuplicateBreakpointAmountException
+     */
     public function addBreakpoint(Breakpoint $breakpoint)
     {
         $this->validateAddBreakpoint($breakpoint);
@@ -71,6 +101,11 @@ class Term
         $this->noOfMonths = $noOfMonths;
     }
 
+    /**
+     * @param Breakpoint $newBreakpoint
+     *
+     * @throws Exception\DuplicateBreakpointAmountException
+     */
     private function validateAddBreakpoint(Breakpoint $newBreakpoint)
     {
         $termBreakpoints = $this->getBreakpoints();
