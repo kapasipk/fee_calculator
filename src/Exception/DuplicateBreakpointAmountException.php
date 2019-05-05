@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Lendable\Interview\Interpolation\Exception;
 
-use Throwable;
 use RuntimeException;
 
 class DuplicateBreakpointAmountException extends RuntimeException
 {
-    public function __construct($message = "", $code = 0, Throwable $previous = null)
+    public function __construct(float $amount)
     {
-        parent::__construct($message, $code, $previous);
+        parent::__construct('Breakpoint with amount ' . $amount . ' already exists');
     }
 }

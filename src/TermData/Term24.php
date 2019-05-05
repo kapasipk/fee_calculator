@@ -8,84 +8,84 @@ class Term24 extends Base
 {
     protected $data = [
         [
-            'amount' => 1000,
-            'fee'    => 70,
+            Constants::AMOUNT => 1000,
+            Constants::FEE    => 70,
         ],
         [
-            'amount' => 2000,
-            'fee'    => 100,
+            Constants::AMOUNT => 2000,
+            Constants::FEE    => 100,
         ],
         [
-            'amount' => 3000,
-            'fee'    => 120,
+            Constants::AMOUNT => 3000,
+            Constants::FEE    => 120,
         ],
         [
-            'amount' => 4000,
-            'fee'    => 160,
+            Constants::AMOUNT => 4000,
+            Constants::FEE    => 160,
         ],
         [
-            'amount' => 5000,
-            'fee'    => 200,
+            Constants::AMOUNT => 5000,
+            Constants::FEE    => 200,
         ],
         [
-            'amount' => 6000,
-            'fee'    => 240,
+            Constants::AMOUNT => 6000,
+            Constants::FEE    => 240,
         ],
         [
-            'amount' => 7000,
-            'fee'    => 280,
+            Constants::AMOUNT => 7000,
+            Constants::FEE    => 280,
         ],
         [
-            'amount' => 8000,
-            'fee'    => 320,
+            Constants::AMOUNT => 8000,
+            Constants::FEE    => 320,
         ],
         [
-            'amount' => 9000,
-            'fee'    => 360,
+            Constants::AMOUNT => 9000,
+            Constants::FEE    => 360,
         ],
         [
-            'amount' => 10000,
-            'fee'    => 400,
+            Constants::AMOUNT => 10000,
+            Constants::FEE    => 400,
         ],
         [
-            'amount' => 11000,
-            'fee'    => 440,
+            Constants::AMOUNT => 11000,
+            Constants::FEE    => 440,
         ],
         [
-            'amount' => 12000,
-            'fee'    => 480,
+            Constants::AMOUNT => 12000,
+            Constants::FEE    => 480,
         ],
         [
-            'amount' => 13000,
-            'fee'    => 520,
+            Constants::AMOUNT => 13000,
+            Constants::FEE    => 520,
         ],
         [
-            'amount' => 14000,
-            'fee'    => 560,
+            Constants::AMOUNT => 14000,
+            Constants::FEE    => 560,
         ],
         [
-            'amount' => 15000,
-            'fee'    => 600,
+            Constants::AMOUNT => 15000,
+            Constants::FEE    => 600,
         ],
         [
-            'amount' => 16000,
-            'fee'    => 640,
+            Constants::AMOUNT => 16000,
+            Constants::FEE    => 640,
         ],
         [
-            'amount' => 17000,
-            'fee'    => 680,
+            Constants::AMOUNT => 17000,
+            Constants::FEE    => 680,
         ],
         [
-            'amount' => 18000,
-            'fee'    => 720,
+            Constants::AMOUNT => 18000,
+            Constants::FEE    => 720,
         ],
         [
-            'amount' => 19000,
-            'fee'    => 760,
+            Constants::AMOUNT => 19000,
+            Constants::FEE    => 760,
         ],
         [
-            'amount' => 20000,
-            'fee'    => 800,
+            Constants::AMOUNT => 20000,
+            Constants::FEE    => 800,
         ],
     ];
 }

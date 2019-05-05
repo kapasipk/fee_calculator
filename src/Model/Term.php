@@ -48,7 +48,7 @@ class Term
         return $this->breakpoints;
     }
 
-    private function addBreakpoint(Breakpoint $breakpoint)
+    public function addBreakpoint(Breakpoint $breakpoint)
     {
         $this->validateAddBreakpoint($breakpoint);
 
@@ -79,7 +79,7 @@ class Term
         {
             if ($breakpoint->getAmount() === $newBreakpoint->getAmount())
             {
-                throw new Exception\DuplicateBreakpointAmountException($breakpoint, $newBreakpoint);
+                throw new Exception\DuplicateBreakpointAmountException($breakpoint->getAmount());
             }
         }
     }

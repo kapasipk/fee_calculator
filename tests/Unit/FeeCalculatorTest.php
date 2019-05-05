@@ -87,4 +87,23 @@ class FeeCalculatorTest extends TestCase
             }
         }
     }
+
+    public function testInvalidInterpolationStrategy()
+    {
+        try
+        {
+            new FeeCalculator('Gaussian');
+        }
+        catch (Exception\InvalidInterpolationStrategyException $e)
+        {
+            $this->assertEquals($e->getMessage(), 'Bad Request - Gaussian Interpolation strategy has not been defined');
+        }
+        finally
+        {
+            if (isset($e) === false)
+            {
+                $this->fail('Exception InvalidInterpolationStrategyException expected. None caught');
+            }
+        }
+    }
 }

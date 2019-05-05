@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Lendable\Interview\Interpolation\Model;
 
+use Lendable\Interview\Interpolation\Exception;
+use Lendable\Interview\Interpolation\TermData\Constants;
+
 class Breakpoint
 {
     private $amount = 0.0;
@@ -14,16 +17,22 @@ class Breakpoint
     {
         $this->validateCreate($breakpointData);
 
-        $this->setAmount($breakpointData['amount']);
+        $this->setAmount($breakpointData[Constants::AMOUNT]);
 
-        $this->setFee($breakpointData['fee']);
+        $this->setFee($breakpointData[Constants::FEE]);
     }
 
     private function validateCreate(array $breakpointData)
     {
-        $requiredAttributes = ['amount', 'fee'];
-        
-//        if (array_intersect($breakpointData, $requiredAttributes))
+        $requiredAttributes = [
+            Constants::FEE,
+            Constants::AMOUNT,
+        ];
+
+        if (count(array_intersect(array_keys($breakpointData), $requiredAttributes)) !== count($requiredAttributes))
+        {
+            throw new Exception\MissingBreakpointAttributesException($breakpointData);
+        }
     }
 
     /**

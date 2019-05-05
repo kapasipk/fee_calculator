@@ -2,6 +2,8 @@
 
 namespace Lendable\Interview\Interpolation\Service\Fee;
 
+use Lendable\Interview\Interpolation\Exception;
+use Lendable\Interview\Interpolation\InterpolationStrategy\InterpolationStrategyInterface;
 use Lendable\Interview\Interpolation\Model\Term;
 use Lendable\Interview\Interpolation\Model\LoanApplication;
 
@@ -16,24 +18,37 @@ class FeeCalculator implements FeeCalculatorInterface
 
     public function calculate(LoanApplication $application): float
     {
-        $termInstance = new Term($application->getTerm());
-
+        $term   = $application->getTerm();
         $amount = $application->getAmount();
 
-        $result = $this->interpolationStrategy->calculate($termInstance, $amount);
+        $termInstance = new Term($term);
 
-        return $result;
+        $fee = $this->interpolationStrategy->calculate($termInstance, $amount);
+
+        return $fee;
     }
 
     public function setInterpolationStrategy(string $interpolationType)
+    {
+        $interpolationStrategy = $this->getInterpolationStrategyInstance($interpolationType);
+
+        $this->interpolationStrategy = $interpolationStrategy;
+    }
+
+    private function getInterpolationStrategyInstance(string $interpolationType): InterpolationStrategyInterface
     {
         $className = __NAMESPACE__;
         $className = substr($className, 0, strrpos($className, "\\"));
         $className = substr($className, 0, strrpos($className, "\\"));
         $className = $className . '\\InterpolationStrategy\\' . $interpolationType;
 
+        if (class_exists($className) === false)
+        {
+            throw new Exception\InvalidInterpolationStrategyException($interpolationType);
+        }
+
         $interpolationStrategy = new $className;
 
-        $this->interpolationStrategy = $interpolationStrategy;
+        return $interpolationStrategy;
     }
 }
