@@ -14,9 +14,17 @@ use Lendable\Interview\Interpolation\TermData\Constants;
  */
 class TermTest extends Base
 {
+    /**
+     * Asserts that duplicate breakpoint exception is thrown if a new breakpoint with the same amount is added
+     */
     public function testAddingDuplicateBreakpoint()
     {
-        try
+        $exceptionData = [
+            'class'   => Exception\DuplicateBreakpointAmountException::class,
+            'message' => 'Breakpoint with amount 1000 already exists',
+        ];
+
+        $this->runUnderExceptionHandler(function ()
         {
             $term = new Term(12);
 
@@ -27,17 +35,6 @@ class TermTest extends Base
             $term->addBreakpoint($breakpoint);
 
             $term->addBreakpoint($breakpoint);
-        }
-        catch (Exception\DuplicateBreakpointAmountException $e)
-        {
-            $this->assertEquals($e->getMessage(), 'Breakpoint with amount 1000 already exists');
-        }
-        finally
-        {
-            if (isset($e) === false)
-            {
-                $this->fail('Exception DuplicateBreakpointAmountException expected. None caught');
-            }
-        }
+        }, $exceptionData);
     }
 }

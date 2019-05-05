@@ -62,25 +62,19 @@ class FeeCalculatorTest extends Base
      */
     public function testLinearInterpolationInvalidTerm()
     {
-        $calculator = new FeeCalculator();
+        $exceptionData = [
+            'class'   => Exception\InvalidTermException::class,
+            'message' => 'Bad Request - No term for 36 months has been defined',
+        ];
 
-        $application = new LoanApplication(36, 2750);
-
-        try
+        $this->runUnderExceptionHandler(function ()
         {
+            $calculator = new FeeCalculator();
+
+            $application = new LoanApplication(36, 2750);
+
             $calculator->calculate($application);
-        }
-        catch (Exception\InvalidTermException $e)
-        {
-            $this->assertEquals($e->getMessage(), 'Bad Request - No term for 36 months has been defined');
-        }
-        finally
-        {
-            if (isset($e) === false)
-            {
-                $this->fail('Exception InvalidTermException expected. None caught');
-            }
-        }
+        }, $exceptionData);
     }
 
     /**
@@ -88,25 +82,19 @@ class FeeCalculatorTest extends Base
      */
     public function testLinearInterpolationLoanAmountOutOfRange()
     {
-        $calculator = new FeeCalculator();
+        $exceptionData = [
+            'class'   => Exception\AmountOutOfRangeException::class,
+            'message' => 'Bad Request - The loan amount 22750 is out of the term range defined',
+        ];
 
-        $application = new LoanApplication(12, 22750);
-
-        try
+        $this->runUnderExceptionHandler(function ()
         {
+            $calculator = new FeeCalculator();
+
+            $application = new LoanApplication(12, 22750);
+
             $calculator->calculate($application);
-        }
-        catch (Exception\AmountOutOfRangeException $e)
-        {
-            $this->assertEquals($e->getMessage(), 'Bad Request - The loan amount 22750 is out of the term range defined');
-        }
-        finally
-        {
-            if (isset($e) === false)
-            {
-                $this->fail('Exception AmountOutOfRangeException expected. None caught');
-            }
-        }
+        }, $exceptionData);
     }
 
     /**
@@ -114,20 +102,14 @@ class FeeCalculatorTest extends Base
      */
     public function testInvalidInterpolationStrategy()
     {
-        try
+        $exceptionData = [
+            'class'   => Exception\InvalidInterpolationStrategyException::class,
+            'message' => 'Bad Request - Gaussian Interpolation strategy has not been defined',
+        ];
+
+        $this->runUnderExceptionHandler(function ()
         {
             new FeeCalculator('Gaussian');
-        }
-        catch (Exception\InvalidInterpolationStrategyException $e)
-        {
-            $this->assertEquals($e->getMessage(), 'Bad Request - Gaussian Interpolation strategy has not been defined');
-        }
-        finally
-        {
-            if (isset($e) === false)
-            {
-                $this->fail('Exception InvalidInterpolationStrategyException expected. None caught');
-            }
-        }
+        }, $exceptionData);
     }
 }

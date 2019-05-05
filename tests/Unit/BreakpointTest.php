@@ -18,22 +18,16 @@ class BreakpointTest extends Base
      */
     public function testMissingBreakpointAttributes()
     {
-        try
+        $exceptionData = [
+            'class'   => Exception\MissingBreakpointAttributesException::class,
+            'message' => 'Required breakpoint attributes are missing.',
+        ];
+
+        $this->runUnderExceptionHandler(function ()
         {
             $data = [Constants::AMOUNT => 1000];
 
             new Breakpoint($data);
-        }
-        catch (Exception\MissingBreakpointAttributesException $e)
-        {
-            $this->assertEquals($e->getMessage(),'Required breakpoint attributes are missing.');
-        }
-        finally
-        {
-            if (isset($e) === false)
-            {
-                $this->fail('Exception MissingBreakpointAttributesException expected. None caught');
-            }
-        }
+        }, $exceptionData);
     }
 }
