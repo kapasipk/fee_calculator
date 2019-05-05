@@ -14,8 +14,6 @@ class Term
 
     public function __construct(int $noOfMonths)
     {
-//        $this->validateNoOfMonths();
-
         $this->setNoOfMonths($noOfMonths);
 
         $this->generateBreakpointsFromData();
@@ -26,6 +24,11 @@ class Term
         $className     = __NAMESPACE__;
         $className     = substr($className, 0, strrpos($className, "\\"));
         $termClassName = $className . '\\TermData\\Term' . $this->getNoOfMonths();
+
+        if (class_exists($termClassName) === false)
+        {
+            throw new Exception\InvalidTermException($this->getNoOfMonths());
+        }
 
         $breakpointsData = (new $termClassName)->getData();
 

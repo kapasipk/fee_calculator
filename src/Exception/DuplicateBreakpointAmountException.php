@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Lendable\Interview\Interpolation\Exception;
 
-use RuntimeException;
 use Throwable;
+use RuntimeException;
 
 class DuplicateBreakpointAmountException extends RuntimeException
 {

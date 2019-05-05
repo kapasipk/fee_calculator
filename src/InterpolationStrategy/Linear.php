@@ -2,6 +2,7 @@
 
 namespace Lendable\Interview\Interpolation\InterpolationStrategy;
 
+use Lendable\Interview\Interpolation\Exception;
 use Lendable\Interview\Interpolation\Model\Term;
 
 class Linear implements InterpolationStrategyInterface
@@ -9,6 +10,18 @@ class Linear implements InterpolationStrategyInterface
     public function calculate(Term $term, float $loanAmount): float
     {
         $minBreakpoint = $maxBreakpoint = null;
+
+        foreach ($term->getBreakpoints() as $breakpoint)
+        {
+            $breakpointAmt = $breakpoint->getAmount();
+
+            // If there exists a direct breakpoint for that particular amount,
+            // use the fee directly instead of interpolating
+            if ($breakpointAmt === $loanAmount)
+            {
+                return $breakpoint->getFee();
+            }
+        }
 
         foreach ($term->getBreakpoints() as $breakpoint)
         {
@@ -36,7 +49,7 @@ class Linear implements InterpolationStrategyInterface
 
         if (($minBreakpoint === null) or ($maxBreakpoint === null))
         {
-            throw new \LogicException();
+            throw new Exception\AmountOutOfRangeException($loanAmount);
         }
 
         //
